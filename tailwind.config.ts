@@ -117,21 +117,21 @@ export default {
   			]
   		},
   		fontSize: {
-  			'hero': [
+  			hero: [
   				'clamp(3rem, 10vw, 8rem)',
   				{
   					lineHeight: '0.95',
   					letterSpacing: '-0.03em'
   				}
   			],
-  			'display': [
+  			display: [
   				'clamp(2.5rem, 6vw, 5rem)',
   				{
   					lineHeight: '1',
   					letterSpacing: '-0.02em'
   				}
   			],
-  			'section': [
+  			section: [
   				'clamp(2rem, 4vw, 3.5rem)',
   				{
   					lineHeight: '1.1',
@@ -216,7 +216,7 @@ export default {
   					filter: 'blur(0)'
   				}
   			},
-  			'marquee': {
+  			marquee: {
   				'0%': {
   					transform: 'translateX(0)'
   				},
@@ -240,7 +240,7 @@ export default {
   					opacity: '0.8'
   				}
   			},
-  			'float': {
+  			float: {
   				'0%, 100%': {
   					transform: 'translateY(0)'
   				},
@@ -257,19 +257,19 @@ export default {
   			'scale-in': 'scale-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
   			'slide-in-right': 'slide-in-right 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards',
   			'blur-in': 'blur-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards',
-  			'marquee': 'marquee 30s linear infinite',
+  			marquee: 'marquee 30s linear infinite',
   			'spin-slow': 'spin-slow 20s linear infinite',
   			'pulse-glow': 'pulse-glow 3s ease-in-out infinite',
-  			'float': 'float 6s ease-in-out infinite'
+  			float: 'float 6s ease-in-out infinite'
   		},
-		backgroundImage: {
-			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-			'gradient-spotlight': 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(38 90% 55% / 0.15) 0%, transparent 60%)'
-		},
+  		backgroundImage: {
+  			'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+  			'gradient-spotlight': 'radial-gradient(ellipse 80% 50% at 50% -20%, hsl(38 90% 55% / 0.15) 0%, transparent 60%)'
+  		},
   		boxShadow: {
-  			'glow': '0 0 40px -10px hsl(38 90% 55% / 0.3)',
+  			glow: '0 0 40px -10px hsl(38 90% 55% / 0.3)',
   			'glow-lg': '0 0 60px -15px hsl(38 90% 55% / 0.4)',
-  			'editorial': '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
+  			editorial: '0 25px 50px -12px rgba(0, 0, 0, 0.5)',
   			'2xs': 'var(--shadow-2xs)',
   			xs: 'var(--shadow-xs)',
   			sm: 'var(--shadow-sm)',
