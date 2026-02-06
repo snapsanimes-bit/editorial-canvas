@@ -138,74 +138,81 @@
     --ring: 38 90% 45%;
   }
   .dark {
-    /* Deep, rich dark background */
-    --background: 240 10% 6%;
-    --foreground: 0 0% 98%;
+    /* Warm, sophisticated dark background with subtle brown undertones */
+    --background: 20 12% 8%;
+    --foreground: 40 15% 95%;
 
-    /* Card & surfaces with subtle warmth */
-    --card: 240 8% 10%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 8% 10%;
-    --popover-foreground: 0 0% 98%;
+    /* Card & surfaces - warm charcoal with depth */
+    --card: 20 10% 12%;
+    --card-foreground: 40 15% 95%;
+    --popover: 20 10% 12%;
+    --popover-foreground: 40 15% 95%;
 
-    /* Primary - Vibrant Gold */
-    --primary: 38 95% 55%;
-    --primary-foreground: 240 10% 6%;
+    /* Primary - Refined warm gold (less saturated, more elegant) */
+    --primary: 38 70% 55%;
+    --primary-foreground: 20 12% 8%;
 
-    /* Secondary - Rich surface */
-    --secondary: 240 8% 14%;
-    --secondary-foreground: 0 0% 90%;
+    /* Secondary - Warm surface with subtle warmth */
+    --secondary: 20 8% 16%;
+    --secondary-foreground: 40 10% 85%;
 
-    /* Muted - Balanced grays */
-    --muted: 240 6% 18%;
-    --muted-foreground: 240 5% 60%;
+    /* Muted - Warm gray tones */
+    --muted: 20 6% 20%;
+    --muted-foreground: 30 8% 55%;
 
-    /* Accent - Warm amber glow */
-    --accent: 32 90% 50%;
-    --accent-foreground: 0 0% 98%;
+    /* Accent - Soft amber glow */
+    --accent: 35 60% 50%;
+    --accent-foreground: 40 15% 95%;
 
-    /* Borders & inputs */
-    --border: 240 6% 20%;
-    --input: 240 6% 20%;
-    --ring: 38 95% 55%;
+    /* Borders & inputs - warm and subtle */
+    --border: 25 8% 22%;
+    --input: 25 8% 22%;
+    --ring: 38 70% 55%;
 
     /* Destructive */
-    --destructive: 0 75% 60%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: 0 65% 55%;
+    --destructive-foreground: 40 15% 95%;
 
-    /* Charts - Vibrant palette */
-    --chart-1: 38 95% 55%;
-    --chart-2: 180 60% 50%;
-    --chart-3: 280 80% 65%;
-    --chart-4: 150 70% 50%;
-    --chart-5: 350 80% 60%;
+    /* Charts - Warm, cohesive palette */
+    --chart-1: 38 70% 55%;
+    --chart-2: 180 45% 45%;
+    --chart-3: 280 50% 60%;
+    --chart-4: 150 50% 45%;
+    --chart-5: 350 60% 55%;
 
-    /* Sidebar */
-    --sidebar: 240 10% 8%;
-    --sidebar-foreground: 0 0% 98%;
-    --sidebar-primary: 38 95% 55%;
-    --sidebar-primary-foreground: 240 10% 6%;
-    --sidebar-accent: 240 8% 14%;
-    --sidebar-accent-foreground: 0 0% 98%;
-    --sidebar-border: 240 6% 20%;
-    --sidebar-ring: 38 95% 55%;
+    /* Sidebar - Consistent warm tones */
+    --sidebar: 20 12% 10%;
+    --sidebar-foreground: 40 15% 95%;
+    --sidebar-primary: 38 70% 55%;
+    --sidebar-primary-foreground: 20 12% 8%;
+    --sidebar-accent: 20 8% 16%;
+    --sidebar-accent-foreground: 40 15% 95%;
+    --sidebar-border: 25 8% 22%;
+    --sidebar-ring: 38 70% 55%;
 
-    /* Enhanced shadows with glow */
-    --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.3);
-    --shadow-xs: 0 2px 4px 0px hsl(0 0% 0% / 0.3);
-    --shadow-sm: 0 2px 8px -2px hsl(0 0% 0% / 0.4);
-    --shadow: 0 4px 16px -4px hsl(0 0% 0% / 0.5);
-    --shadow-md: 0 8px 24px -6px hsl(0 0% 0% / 0.5);
-    --shadow-lg: 0 12px 32px -8px hsl(0 0% 0% / 0.5);
-    --shadow-xl: 0 20px 48px -12px hsl(0 0% 0% / 0.6);
-    --shadow-2xl: 0 32px 64px -16px hsl(0 0% 0% / 0.7);
-    --shadow-glow: 0 0 40px -10px hsl(38 95% 55% / 0.4);
-    --shadow-glow-lg: 0 0 80px -20px hsl(38 95% 55% / 0.5);
+    /* Custom editorial colors for dark mode */
+    --cream: 35 25% 88%;
+    --warm-gray: 25 8% 45%;
+    --charcoal: 20 12% 8%;
+    --gold: 38 70% 55%;
+    --gold-muted: 38 45% 40%;
+
+    /* Enhanced shadows with warm glow */
+    --shadow-2xs: 0 1px 3px 0px hsl(20 20% 5% / 0.4);
+    --shadow-xs: 0 2px 4px 0px hsl(20 20% 5% / 0.4);
+    --shadow-sm: 0 2px 8px -2px hsl(20 20% 5% / 0.5);
+    --shadow: 0 4px 16px -4px hsl(20 20% 5% / 0.6);
+    --shadow-md: 0 8px 24px -6px hsl(20 20% 5% / 0.6);
+    --shadow-lg: 0 12px 32px -8px hsl(20 20% 5% / 0.6);
+    --shadow-xl: 0 20px 48px -12px hsl(20 20% 5% / 0.7);
+    --shadow-2xl: 0 32px 64px -16px hsl(20 20% 5% / 0.8);
+    --shadow-glow: 0 0 40px -10px hsl(38 70% 55% / 0.3);
+    --shadow-glow-lg: 0 0 80px -20px hsl(38 70% 55% / 0.4);
     
-    /* Neon accents */
-    --neon-gold: 38 95% 55%;
-    --neon-cyan: 180 100% 50%;
-    --neon-magenta: 300 100% 60%;
+    /* Warm accent tones */
+    --neon-gold: 38 70% 55%;
+    --neon-amber: 30 80% 50%;
+    --neon-copper: 20 70% 45%;
   }
 }
 
