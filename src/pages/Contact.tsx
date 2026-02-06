@@ -1,13 +1,21 @@
 import { motion } from "framer-motion";
-import { Mail, MapPin, Clock, Linkedin, Twitter, Instagram, Dribbble } from "lucide-react";
+import { Mail, MapPin, Clock, Linkedin, Twitter, Instagram, Dribbble, Github, Phone } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import ContactForm from "@/components/contact/ContactForm";
+import { contactInfo, faq } from "@/data/projects";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
 
 const socialLinks = [
-  { name: "LinkedIn", href: "#", icon: Linkedin },
-  { name: "Twitter", href: "#", icon: Twitter },
-  { name: "Instagram", href: "#", icon: Instagram },
-  { name: "Dribbble", href: "#", icon: Dribbble },
+  { name: "LinkedIn", href: "https://linkedin.com/in/marcus-anderson", icon: Linkedin },
+  { name: "Twitter", href: "https://twitter.com/marcusdesigns", icon: Twitter },
+  { name: "Instagram", href: "https://instagram.com/marcus.designs", icon: Instagram },
+  { name: "Dribbble", href: "https://dribbble.com/marcus", icon: Dribbble },
+  { name: "GitHub", href: "https://github.com/marcus", icon: Github },
 ];
 
 const Contact = () => {
@@ -61,7 +69,7 @@ const Contact = () => {
             >
               {/* Info Cards */}
               <div className="space-y-4">
-                <div className="rounded-2xl border border-border bg-card p-6">
+                <div className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Mail className="h-5 w-5" />
@@ -69,16 +77,33 @@ const Contact = () => {
                     <div>
                       <h3 className="font-medium">Email</h3>
                       <a
-                        href="mailto:hello@marcus.design"
+                        href={`mailto:${contactInfo.email}`}
                         className="text-muted-foreground transition-colors hover:text-primary"
                       >
-                        hello@marcus.design
+                        {contactInfo.email}
                       </a>
                     </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-border bg-card p-6">
+                <div className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
+                  <div className="flex items-start gap-4">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                      <Phone className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="font-medium">Phone</h3>
+                      <a
+                        href={`tel:${contactInfo.phone}`}
+                        className="text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        {contactInfo.phone}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <MapPin className="h-5 w-5" />
@@ -86,13 +111,16 @@ const Contact = () => {
                     <div>
                       <h3 className="font-medium">Location</h3>
                       <p className="text-muted-foreground">
-                        New York, NY, USA
+                        {contactInfo.location}
+                      </p>
+                      <p className="text-sm text-muted-foreground/70">
+                        {contactInfo.timezone}
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="rounded-2xl border border-border bg-card p-6">
+                <div className="rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/30 hover:shadow-lg hover:shadow-primary/5">
                   <div className="flex items-start gap-4">
                     <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
                       <Clock className="h-5 w-5" />
@@ -104,7 +132,7 @@ const Contact = () => {
                           <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75"></span>
                           <span className="relative inline-flex h-2 w-2 rounded-full bg-primary"></span>
                         </span>
-                        Available for new projects
+                        {contactInfo.availability}
                       </p>
                     </div>
                   </div>
@@ -121,7 +149,7 @@ const Contact = () => {
                     <a
                       key={social.name}
                       href={social.href}
-                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground"
+                      className="flex h-12 w-12 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/20"
                       data-cursor="hover"
                       target="_blank"
                       rel="noopener noreferrer"
@@ -134,15 +162,55 @@ const Contact = () => {
               </div>
 
               {/* Response Time */}
-              <div className="rounded-2xl bg-secondary/50 p-6">
+              <div className="rounded-2xl bg-gradient-to-br from-primary/10 to-accent/10 p-6">
                 <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Response Time:</strong> I
-                  typically respond to inquiries within 24-48 hours. For urgent
+                  <strong className="text-foreground">Response Time:</strong> {contactInfo.responseTime}. For urgent
                   matters, please mention it in your message.
                 </p>
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-padding bg-secondary/30">
+        <div className="container-wide">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <span className="text-meta mb-4 block text-primary">FAQ</span>
+            <h2 className="text-section">Frequently Asked Questions</h2>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="mx-auto max-w-3xl"
+          >
+            <Accordion type="single" collapsible className="space-y-4">
+              {faq.map((item, index) => (
+                <AccordionItem
+                  key={index}
+                  value={`item-${index}`}
+                  className="rounded-2xl border border-border bg-card px-6 transition-all hover:border-primary/30"
+                >
+                  <AccordionTrigger className="text-left font-medium hover:no-underline">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+          </motion.div>
         </div>
       </section>
     </Layout>

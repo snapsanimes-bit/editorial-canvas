@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
-import { ArrowUpRight, Mail, Linkedin, Twitter, Instagram, Dribbble } from "lucide-react";
+import { ArrowUpRight, Mail, Linkedin, Twitter, Instagram, Dribbble, Github } from "lucide-react";
+import { contactInfo } from "@/data/projects";
 
 const footerLinks = {
   navigation: [
@@ -10,10 +11,11 @@ const footerLinks = {
     { name: "Contact", href: "/contact" },
   ],
   social: [
-    { name: "LinkedIn", href: "#", icon: Linkedin },
-    { name: "Twitter", href: "#", icon: Twitter },
-    { name: "Instagram", href: "#", icon: Instagram },
-    { name: "Dribbble", href: "#", icon: Dribbble },
+    { name: "LinkedIn", href: "https://linkedin.com/in/marcus-anderson", icon: Linkedin },
+    { name: "Twitter", href: "https://twitter.com/marcusdesigns", icon: Twitter },
+    { name: "Instagram", href: "https://instagram.com/marcus.designs", icon: Instagram },
+    { name: "Dribbble", href: "https://dribbble.com/marcus", icon: Dribbble },
+    { name: "GitHub", href: "https://github.com/marcus", icon: Github },
   ],
 };
 
@@ -36,16 +38,19 @@ const Footer = () => {
             </Link>
             <p className="mt-4 max-w-md text-muted-foreground">
               Art Director & Brand Designer crafting distinctive visual identities
-              and digital experiences for forward-thinking brands.
+              and digital experiences for forward-thinking brands worldwide.
             </p>
             <a
-              href="mailto:hello@marcus.design"
+              href={`mailto:${contactInfo.email}`}
               className="mt-6 inline-flex items-center gap-2 text-primary transition-colors hover:text-primary/80"
               data-cursor="hover"
             >
               <Mail className="h-4 w-4" />
-              hello@marcus.design
+              {contactInfo.email}
             </a>
+            <p className="mt-2 text-sm text-muted-foreground">
+              {contactInfo.location} • {contactInfo.timezone}
+            </p>
           </div>
 
           {/* Navigation */}
@@ -96,7 +101,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
           <p className="text-sm text-muted-foreground">
-            © {currentYear} Marcus. All rights reserved.
+            © {currentYear} Marcus Anderson. All rights reserved.
           </p>
           <div className="flex items-center gap-6 text-sm text-muted-foreground">
             <span className="flex items-center gap-2">
@@ -104,7 +109,7 @@ const Footer = () => {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75"></span>
                 <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500"></span>
               </span>
-              Available for projects
+              {contactInfo.availability}
             </span>
           </div>
         </div>

@@ -1,34 +1,18 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Download, Sparkles } from "lucide-react";
+import { ArrowRight, Download, Sparkles, Award, Trophy } from "lucide-react";
 import Layout from "@/components/layout/Layout";
-import { experience, skills, tools, clients } from "@/data/projects";
+import { experience, education, skills, tools, clients, awards, stats } from "@/data/projects";
 import GeometricBackground from "@/components/ui/GeometricBackground";
 import SkillChart from "@/components/ui/SkillChart";
 import AnimatedTimeline from "@/components/ui/AnimatedTimeline";
 
-// Transform skills for chart
-const skillsWithLevels = [
-  { name: "Brand Identity", level: 95 },
-  { name: "UI/UX Design", level: 90 },
-  { name: "Typography", level: 92 },
-  { name: "Motion Design", level: 85 },
-  { name: "Art Direction", level: 88 },
-];
-
-const toolsWithLevels = [
-  { name: "Figma", level: 98 },
-  { name: "After Effects", level: 85 },
-  { name: "Photoshop", level: 92 },
-  { name: "Illustrator", level: 90 },
-  { name: "Blender", level: 70 },
-];
-
-// Transform experience for timeline
-const timelineItems = experience.map((exp) => ({
-  ...exp,
-  type: "work" as const,
-}));
+// Combine experience and education for timeline
+const timelineItems = [...experience, ...education].sort((a, b) => {
+  const yearA = parseInt(a.period.split(" - ")[0]);
+  const yearB = parseInt(b.period.split(" - ")[0]);
+  return yearB - yearA;
+});
 
 const About = () => {
   return (
@@ -195,7 +179,7 @@ const About = () => {
             <h2 className="text-section">Core Competencies</h2>
           </motion.div>
 
-          <SkillChart skills={skillsWithLevels} variant="radial" />
+          <SkillChart skills={skills} variant="radial" />
 
           {/* Tools Section */}
           <motion.div
@@ -209,7 +193,7 @@ const About = () => {
               Tools & Software
             </h3>
             <div className="mx-auto max-w-2xl">
-              <SkillChart skills={toolsWithLevels} variant="bar" />
+              <SkillChart skills={tools} variant="bar" />
             </div>
           </motion.div>
         </div>
@@ -232,6 +216,80 @@ const About = () => {
           </motion.div>
 
           <AnimatedTimeline items={timelineItems} />
+        </div>
+      </section>
+
+      {/* Awards Section */}
+      <section className="section-padding relative overflow-hidden">
+        <div className="container-wide">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <span className="text-meta mb-4 flex items-center justify-center gap-2 text-primary">
+              <Trophy className="h-4 w-4" />
+              Recognition
+            </span>
+            <h2 className="text-section">Awards & Honors</h2>
+          </motion.div>
+
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {awards.map((award, index) => (
+              <motion.div
+                key={`${award.title}-${index}`}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                viewport={{ once: true }}
+                className="group rounded-2xl border border-border bg-card p-6 transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10"
+              >
+                <div className="mb-3 flex items-center gap-2">
+                  <Award className="h-5 w-5 text-primary" />
+                  <span className="text-sm text-muted-foreground">{award.year}</span>
+                </div>
+                <h3 className="font-display text-lg font-semibold">{award.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground">{award.project}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Stats Section */}
+      <section className="section-padding-sm border-y border-border">
+        <div className="container-wide">
+          <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={stat.label}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="text-center"
+              >
+                <motion.span
+                  className="font-display text-4xl font-bold text-primary md:text-5xl"
+                  animate={{
+                    textShadow: [
+                      "0 0 10px hsl(var(--primary) / 0.3)",
+                      "0 0 30px hsl(var(--primary) / 0.5)",
+                      "0 0 10px hsl(var(--primary) / 0.3)",
+                    ],
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, delay: index * 0.5 }}
+                >
+                  {stat.value}
+                </motion.span>
+                <span className="mt-2 block text-sm text-muted-foreground">
+                  {stat.label}
+                </span>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

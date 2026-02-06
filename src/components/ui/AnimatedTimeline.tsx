@@ -8,6 +8,8 @@ interface TimelineItem {
   role: string;
   company: string;
   description: string;
+  location?: string;
+  achievements?: string[];
   type?: "work" | "education" | "award" | "milestone";
 }
 
@@ -28,6 +30,33 @@ const TimelineCard = ({ item, index, isLast }: { item: TimelineItem; index: numb
   const Icon = iconMap[item.type || "work"];
   const isEven = index % 2 === 0;
 
+  const CardContent = () => (
+    <div className="group relative rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
+      <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+      <div className="flex items-center justify-between">
+        <span className="text-meta text-primary">{item.period}</span>
+        {item.location && (
+          <span className="text-xs text-muted-foreground">{item.location}</span>
+        )}
+      </div>
+      <h3 className="mt-2 font-display text-xl font-semibold">{item.role}</h3>
+      <p className="mt-1 text-primary/80">{item.company}</p>
+      <p className="mt-3 text-sm text-muted-foreground">{item.description}</p>
+      {item.achievements && item.achievements.length > 0 && (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {item.achievements.map((achievement, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary"
+            >
+              {achievement}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+
   return (
     <div ref={ref} className="relative grid md:grid-cols-[1fr_auto_1fr] gap-4 md:gap-8">
       {/* Left content (even items) */}
@@ -37,15 +66,7 @@ const TimelineCard = ({ item, index, isLast }: { item: TimelineItem; index: numb
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        {isEven && (
-          <div className="group relative rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-            <span className="text-meta text-primary">{item.period}</span>
-            <h3 className="mt-2 font-display text-xl font-semibold">{item.role}</h3>
-            <p className="mt-1 text-primary/80">{item.company}</p>
-            <p className="mt-3 text-sm text-muted-foreground">{item.description}</p>
-          </div>
-        )}
+        {isEven && <CardContent />}
       </motion.div>
 
       {/* Center line and icon */}
@@ -97,13 +118,7 @@ const TimelineCard = ({ item, index, isLast }: { item: TimelineItem; index: numb
         animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
-        <div className="group relative rounded-2xl border border-border bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5">
-          <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
-          <span className="text-meta text-primary">{item.period}</span>
-          <h3 className="mt-2 font-display text-xl font-semibold">{item.role}</h3>
-          <p className="mt-1 text-primary/80">{item.company}</p>
-          <p className="mt-3 text-sm text-muted-foreground">{item.description}</p>
-        </div>
+        <CardContent />
       </motion.div>
     </div>
   );
