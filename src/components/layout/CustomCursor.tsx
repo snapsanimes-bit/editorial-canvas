@@ -3,11 +3,12 @@ import { motion, useMotionValue, useSpring } from "framer-motion";
 
 const CustomCursor = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
   const [cursorType, setCursorType] = useState<"default" | "hover" | "text" | "drag">("default");
   const [cursorText, setCursorText] = useState("");
 
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
+  const cursorX = useMotionValue(0);
+  const cursorY = useMotionValue(0);
 
   const springConfig = { damping: 25, stiffness: 400, mass: 0.5 };
   const cursorXSpring = useSpring(cursorX, springConfig);
@@ -17,16 +18,34 @@ const CustomCursor = () => {
     (e: MouseEvent) => {
       cursorX.set(e.clientX);
       cursorY.set(e.clientY);
+      if (!isVisible) setIsVisible(true);
     },
-    [cursorX, cursorY]
+    [cursorX, cursorY, isVisible]
   );
 
+  // Check for touch device on mount
   useEffect(() => {
+    const checkTouchDevice = () => {
+      setIsTouchDevice(
+        window.matchMedia("(pointer: coarse)").matches ||
+        'ontouchstart' in window ||
+        navigator.maxTouchPoints > 0
+      );
+    };
+    
+    checkTouchDevice();
+    window.addEventListener('resize', checkTouchDevice);
+    return () => window.removeEventListener('resize', checkTouchDevice);
+  }, []);
+
+  useEffect(() => {
+    if (isTouchDevice) return;
+
     // Add custom cursor class to body
     document.body.classList.add("custom-cursor");
 
-    const handleMouseEnter = () => setIsVisible(true);
     const handleMouseLeave = () => setIsVisible(false);
+    const handleMouseEnter = () => setIsVisible(true);
 
     const handleElementHover = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
@@ -40,7 +59,9 @@ const CustomCursor = () => {
       } else if (
         target.closest("a") ||
         target.closest("button") ||
-        target.closest("[role='button']")
+        target.closest("[role='button']") ||
+        target.closest("input") ||
+        target.closest("textarea")
       ) {
         setCursorType("hover");
         setCursorText("");
@@ -52,17 +73,17 @@ const CustomCursor = () => {
 
     window.addEventListener("mousemove", moveCursor);
     window.addEventListener("mousemove", handleElementHover);
-    document.addEventListener("mouseenter", handleMouseEnter);
-    document.addEventListener("mouseleave", handleMouseLeave);
+    document.documentElement.addEventListener("mouseleave", handleMouseLeave);
+    document.documentElement.addEventListener("mouseenter", handleMouseEnter);
 
     return () => {
       document.body.classList.remove("custom-cursor");
       window.removeEventListener("mousemove", moveCursor);
       window.removeEventListener("mousemove", handleElementHover);
-      document.removeEventListener("mouseenter", handleMouseEnter);
-      document.removeEventListener("mouseleave", handleMouseLeave);
+      document.documentElement.removeEventListener("mouseleave", handleMouseLeave);
+      document.documentElement.removeEventListener("mouseenter", handleMouseEnter);
     };
-  }, [moveCursor]);
+  }, [moveCursor, isTouchDevice]);
 
   const getCursorSize = () => {
     switch (cursorType) {
@@ -112,8 +133,8 @@ const CustomCursor = () => {
     }
   };
 
-  // Hide on mobile/touch devices
-  if (typeof window !== "undefined" && window.matchMedia("(pointer: coarse)").matches) {
+  // Hide on touch devices
+  if (isTouchDevice) {
     return null;
   }
 
