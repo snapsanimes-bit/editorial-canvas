@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Sparkles } from "lucide-react";
 import GeometricBackground from "@/components/ui/GeometricBackground";
+import { stats } from "@/data/projects";
 
 const CTASection = () => {
   return (
@@ -82,13 +83,9 @@ const CTASection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
-            className="mt-16 grid grid-cols-3 gap-8 border-t border-border pt-12"
+            className="mt-16 grid grid-cols-2 gap-8 border-t border-border pt-12 md:grid-cols-4"
           >
-            {[
-              { value: "50+", label: "Projects Completed" },
-              { value: "10+", label: "Years Experience" },
-              { value: "98%", label: "Client Satisfaction" },
-            ].map((stat, index) => (
+            {stats.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 className="text-center"
