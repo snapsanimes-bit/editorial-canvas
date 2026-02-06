@@ -1,10 +1,14 @@
 import { motion } from "framer-motion";
 import { ArrowRight, ArrowDownRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import GeometricBackground from "@/components/ui/GeometricBackground";
 
 const HeroSection = () => {
   return (
     <section className="relative min-h-screen overflow-hidden pt-20">
+      {/* Geometric Background */}
+      <GeometricBackground />
+      
       {/* Spotlight Background */}
       <div className="spotlight absolute inset-0" />
       
@@ -95,19 +99,6 @@ const HeroSection = () => {
         </motion.div>
       </div>
 
-      {/* Decorative Elements */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.5, scale: 1 }}
-        transition={{ duration: 1.5, delay: 0.5 }}
-        className="absolute -right-32 -top-32 h-96 w-96 rounded-full bg-primary/20 blur-3xl"
-      />
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 0.3, scale: 1 }}
-        transition={{ duration: 1.5, delay: 0.7 }}
-        className="absolute -bottom-32 -left-32 h-96 w-96 rounded-full bg-primary/10 blur-3xl"
-      />
     </section>
   );
 };
