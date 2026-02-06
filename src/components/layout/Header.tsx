@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import ThemeToggle from "./ThemeToggle";
 
 const navLinks = [
   { name: "Work", href: "/work" },
@@ -88,14 +89,17 @@ const Header = () => {
             ))}
           </ul>
 
-          {/* Desktop CTA */}
-          <Link
-            to="/contact"
-            className="hidden items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-glow md:flex"
-            data-cursor="hover"
-          >
-            Let's Talk
-          </Link>
+          {/* Desktop CTA & Theme Toggle */}
+          <div className="hidden items-center gap-4 md:flex">
+            <ThemeToggle />
+            <Link
+              to="/contact"
+              className="items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-all duration-300 hover:bg-primary/90 hover:shadow-glow flex"
+              data-cursor="hover"
+            >
+              Let's Talk
+            </Link>
+          </div>
 
           {/* Mobile Menu Toggle */}
           <button
@@ -170,7 +174,7 @@ const Header = () => {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 20 }}
                 transition={{ duration: 0.4, delay: 0.35 }}
-                className="mt-8"
+                className="mt-8 flex flex-col items-center gap-6"
               >
                 <Link
                   to="/contact"
@@ -179,6 +183,7 @@ const Header = () => {
                 >
                   Let's Talk
                 </Link>
+                <ThemeToggle />
               </motion.div>
             </motion.nav>
           </motion.div>
