@@ -138,81 +138,81 @@
     --ring: 38 90% 45%;
   }
   .dark {
-    /* Warm, sophisticated dark background with subtle brown undertones */
-    --background: 20 12% 8%;
-    --foreground: 40 15% 95%;
+    /* Rich dark background with warm undertones */
+    --background: 20 15% 7%;
+    --foreground: 40 20% 95%;
 
-    /* Card & surfaces - warm charcoal with depth */
-    --card: 20 10% 12%;
-    --card-foreground: 40 15% 95%;
-    --popover: 20 10% 12%;
-    --popover-foreground: 40 15% 95%;
+    /* Card & surfaces - warm charcoal */
+    --card: 20 12% 11%;
+    --card-foreground: 40 20% 95%;
+    --popover: 20 12% 11%;
+    --popover-foreground: 40 20% 95%;
 
-    /* Primary - Refined warm gold (less saturated, more elegant) */
-    --primary: 38 70% 55%;
-    --primary-foreground: 20 12% 8%;
+    /* Primary - Vibrant, rich gold */
+    --primary: 42 92% 56%;
+    --primary-foreground: 20 15% 7%;
 
-    /* Secondary - Warm surface with subtle warmth */
-    --secondary: 20 8% 16%;
-    --secondary-foreground: 40 10% 85%;
+    /* Secondary - Warm surface with gold hint */
+    --secondary: 30 15% 15%;
+    --secondary-foreground: 42 80% 75%;
 
-    /* Muted - Warm gray tones */
-    --muted: 20 6% 20%;
-    --muted-foreground: 30 8% 55%;
+    /* Muted - Warm tones with gold undertone */
+    --muted: 30 10% 18%;
+    --muted-foreground: 38 20% 55%;
 
-    /* Accent - Soft amber glow */
-    --accent: 35 60% 50%;
-    --accent-foreground: 40 15% 95%;
+    /* Accent - Rich amber gold */
+    --accent: 38 85% 52%;
+    --accent-foreground: 20 15% 7%;
 
-    /* Borders & inputs - warm and subtle */
-    --border: 25 8% 22%;
-    --input: 25 8% 22%;
-    --ring: 38 70% 55%;
+    /* Borders with subtle gold tint */
+    --border: 35 12% 20%;
+    --input: 35 12% 20%;
+    --ring: 42 92% 56%;
 
     /* Destructive */
-    --destructive: 0 65% 55%;
-    --destructive-foreground: 40 15% 95%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 40 20% 95%;
 
-    /* Charts - Warm, cohesive palette */
-    --chart-1: 38 70% 55%;
-    --chart-2: 180 45% 45%;
-    --chart-3: 280 50% 60%;
-    --chart-4: 150 50% 45%;
-    --chart-5: 350 60% 55%;
+    /* Charts - Gold-centric palette */
+    --chart-1: 42 92% 56%;
+    --chart-2: 32 85% 50%;
+    --chart-3: 48 80% 60%;
+    --chart-4: 25 75% 45%;
+    --chart-5: 55 70% 55%;
 
-    /* Sidebar - Consistent warm tones */
-    --sidebar: 20 12% 10%;
-    --sidebar-foreground: 40 15% 95%;
-    --sidebar-primary: 38 70% 55%;
-    --sidebar-primary-foreground: 20 12% 8%;
-    --sidebar-accent: 20 8% 16%;
-    --sidebar-accent-foreground: 40 15% 95%;
-    --sidebar-border: 25 8% 22%;
-    --sidebar-ring: 38 70% 55%;
+    /* Sidebar with gold accents */
+    --sidebar: 20 15% 9%;
+    --sidebar-foreground: 40 20% 95%;
+    --sidebar-primary: 42 92% 56%;
+    --sidebar-primary-foreground: 20 15% 7%;
+    --sidebar-accent: 30 15% 15%;
+    --sidebar-accent-foreground: 42 80% 75%;
+    --sidebar-border: 35 15% 22%;
+    --sidebar-ring: 42 92% 56%;
 
-    /* Custom editorial colors for dark mode */
-    --cream: 35 25% 88%;
-    --warm-gray: 25 8% 45%;
-    --charcoal: 20 12% 8%;
-    --gold: 38 70% 55%;
-    --gold-muted: 38 45% 40%;
+    /* Custom editorial colors - rich golds */
+    --cream: 40 30% 90%;
+    --warm-gray: 30 12% 45%;
+    --charcoal: 20 15% 7%;
+    --gold: 42 92% 56%;
+    --gold-muted: 38 60% 45%;
 
-    /* Enhanced shadows with warm glow */
-    --shadow-2xs: 0 1px 3px 0px hsl(20 20% 5% / 0.4);
-    --shadow-xs: 0 2px 4px 0px hsl(20 20% 5% / 0.4);
-    --shadow-sm: 0 2px 8px -2px hsl(20 20% 5% / 0.5);
-    --shadow: 0 4px 16px -4px hsl(20 20% 5% / 0.6);
-    --shadow-md: 0 8px 24px -6px hsl(20 20% 5% / 0.6);
-    --shadow-lg: 0 12px 32px -8px hsl(20 20% 5% / 0.6);
-    --shadow-xl: 0 20px 48px -12px hsl(20 20% 5% / 0.7);
-    --shadow-2xl: 0 32px 64px -16px hsl(20 20% 5% / 0.8);
-    --shadow-glow: 0 0 40px -10px hsl(38 70% 55% / 0.3);
-    --shadow-glow-lg: 0 0 80px -20px hsl(38 70% 55% / 0.4);
+    /* Enhanced shadows with gold glow */
+    --shadow-2xs: 0 1px 3px 0px hsl(20 25% 4% / 0.5);
+    --shadow-xs: 0 2px 4px 0px hsl(20 25% 4% / 0.5);
+    --shadow-sm: 0 2px 8px -2px hsl(20 25% 4% / 0.6);
+    --shadow: 0 4px 16px -4px hsl(20 25% 4% / 0.7);
+    --shadow-md: 0 8px 24px -6px hsl(20 25% 4% / 0.7);
+    --shadow-lg: 0 12px 32px -8px hsl(20 25% 4% / 0.7);
+    --shadow-xl: 0 20px 48px -12px hsl(20 25% 4% / 0.8);
+    --shadow-2xl: 0 32px 64px -16px hsl(20 25% 4% / 0.9);
+    --shadow-glow: 0 0 50px -10px hsl(42 92% 56% / 0.5);
+    --shadow-glow-lg: 0 0 100px -20px hsl(42 92% 56% / 0.6);
     
-    /* Warm accent tones */
-    --neon-gold: 38 70% 55%;
-    --neon-amber: 30 80% 50%;
-    --neon-copper: 20 70% 45%;
+    /* Gold accent spectrum */
+    --neon-gold: 42 92% 56%;
+    --neon-amber: 32 90% 52%;
+    --neon-honey: 45 85% 50%;
   }
 }
 
