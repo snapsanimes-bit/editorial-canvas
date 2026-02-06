@@ -1,14 +1,41 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Sparkles } from "lucide-react";
 import Layout from "@/components/layout/Layout";
 import { experience, skills, tools, clients } from "@/data/projects";
+import GeometricBackground from "@/components/ui/GeometricBackground";
+import SkillChart from "@/components/ui/SkillChart";
+import AnimatedTimeline from "@/components/ui/AnimatedTimeline";
+
+// Transform skills for chart
+const skillsWithLevels = [
+  { name: "Brand Identity", level: 95 },
+  { name: "UI/UX Design", level: 90 },
+  { name: "Typography", level: 92 },
+  { name: "Motion Design", level: 85 },
+  { name: "Art Direction", level: 88 },
+];
+
+const toolsWithLevels = [
+  { name: "Figma", level: 98 },
+  { name: "After Effects", level: 85 },
+  { name: "Photoshop", level: 92 },
+  { name: "Illustrator", level: 90 },
+  { name: "Blender", level: 70 },
+];
+
+// Transform experience for timeline
+const timelineItems = experience.map((exp) => ({
+  ...exp,
+  type: "work" as const,
+}));
 
 const About = () => {
   return (
     <Layout>
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-32 pb-20">
+        <GeometricBackground />
         <div className="spotlight absolute inset-0" />
         <div className="container-wide relative z-10">
           <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
@@ -19,11 +46,21 @@ const About = () => {
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
               className="relative"
             >
-              <div className="aspect-[3/4] overflow-hidden rounded-3xl bg-gradient-to-br from-primary/20 to-accent/10">
+              <div className="aspect-[3/4] overflow-hidden rounded-3xl border border-border/50 bg-gradient-to-br from-primary/20 to-accent/10">
                 <div className="flex h-full items-center justify-center">
-                  <span className="font-display text-[10rem] font-bold text-primary/20">
+                  <motion.span
+                    className="font-display text-[10rem] font-bold text-primary/30"
+                    animate={{
+                      textShadow: [
+                        "0 0 20px hsl(var(--primary) / 0.3)",
+                        "0 0 60px hsl(var(--primary) / 0.5)",
+                        "0 0 20px hsl(var(--primary) / 0.3)",
+                      ],
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                  >
                     M
-                  </span>
+                  </motion.span>
                 </div>
               </div>
               {/* Decorative Element */}
@@ -31,14 +68,26 @@ const About = () => {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="absolute -bottom-8 -right-8 flex h-40 w-40 items-center justify-center rounded-full bg-primary shadow-glow"
+                className="absolute -bottom-8 -right-8 flex h-40 w-40 items-center justify-center rounded-full border border-primary/50 bg-primary shadow-lg shadow-primary/30"
               >
                 <div className="text-center text-primary-foreground">
-                  <span className="font-display text-4xl font-bold">10+</span>
+                  <motion.span
+                    className="font-display text-4xl font-bold"
+                    animate={{ scale: [1, 1.05, 1] }}
+                    transition={{ duration: 2, repeat: Infinity }}
+                  >
+                    10+
+                  </motion.span>
                   <span className="block text-xs uppercase tracking-wider opacity-80">
                     Years
                   </span>
                 </div>
+                {/* Glow ring */}
+                <motion.div
+                  className="absolute inset-0 rounded-full border-2 border-primary"
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                />
               </motion.div>
             </motion.div>
 
@@ -48,7 +97,8 @@ const About = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
             >
-              <span className="text-meta mb-4 block text-muted-foreground">
+              <span className="text-meta mb-4 flex items-center gap-2 text-primary">
+                <Sparkles className="h-4 w-4" />
                 About Me
               </span>
               <h1 className="text-display mb-6">
@@ -75,7 +125,7 @@ const About = () => {
             transition={{ duration: 0.6 }}
             viewport={{ once: true }}
           >
-            <span className="text-meta mb-4 block text-muted-foreground">
+            <span className="text-meta mb-4 block text-primary">
               My Story
             </span>
             <div className="space-y-6">
@@ -107,8 +157,9 @@ const About = () => {
       </section>
 
       {/* Philosophy Section */}
-      <section className="section-padding bg-secondary/30">
-        <div className="container-wide">
+      <section className="section-padding relative overflow-hidden bg-secondary/30">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
+        <div className="container-wide relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -116,7 +167,7 @@ const About = () => {
             viewport={{ once: true }}
             className="text-center"
           >
-            <span className="text-meta mb-4 block text-muted-foreground">
+            <span className="text-meta mb-4 block text-primary">
               Design Philosophy
             </span>
             <p className="text-quote mx-auto max-w-4xl">
@@ -128,115 +179,8 @@ const About = () => {
         </div>
       </section>
 
-      {/* Skills & Tools */}
+      {/* Skills Section */}
       <section className="section-padding">
-        <div className="container-wide">
-          <div className="grid gap-16 lg:grid-cols-2">
-            {/* Skills */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-meta mb-6 block text-muted-foreground">
-                Skills & Expertise
-              </span>
-              <div className="flex flex-wrap gap-3">
-                {skills.map((skill, index) => (
-                  <motion.span
-                    key={skill}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    className="rounded-full border border-border px-5 py-2.5 text-sm font-medium transition-colors hover:border-primary hover:bg-primary hover:text-primary-foreground"
-                  >
-                    {skill}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-
-            {/* Tools */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              viewport={{ once: true }}
-            >
-              <span className="text-meta mb-6 block text-muted-foreground">
-                Tools & Software
-              </span>
-              <div className="flex flex-wrap gap-3">
-                {tools.map((tool, index) => (
-                  <motion.span
-                    key={tool}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.4, delay: index * 0.05 }}
-                    viewport={{ once: true }}
-                    className="rounded-full bg-secondary px-5 py-2.5 text-sm font-medium text-secondary-foreground"
-                  >
-                    {tool}
-                  </motion.span>
-                ))}
-              </div>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience */}
-      <section className="section-padding border-t border-border">
-        <div className="container-wide">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="mb-12"
-          >
-            <span className="text-meta mb-4 block text-muted-foreground">
-              Experience
-            </span>
-            <h2 className="text-section">Career Timeline</h2>
-          </motion.div>
-
-          <div className="space-y-0">
-            {experience.map((exp, index) => (
-              <motion.div
-                key={exp.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="group grid gap-4 border-t border-border py-8 md:grid-cols-4 md:gap-8"
-              >
-                <div>
-                  <span className="text-sm text-muted-foreground">
-                    {exp.period}
-                  </span>
-                </div>
-                <div className="md:col-span-2">
-                  <h3 className="font-display text-xl font-semibold">
-                    {exp.role}
-                  </h3>
-                  <p className="mt-1 text-primary">{exp.company}</p>
-                </div>
-                <div>
-                  <p className="text-sm text-muted-foreground">
-                    {exp.description}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Clients */}
-      <section className="section-padding bg-secondary/30">
         <div className="container-wide">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -245,7 +189,64 @@ const About = () => {
             viewport={{ once: true }}
             className="mb-12 text-center"
           >
-            <span className="text-meta mb-4 block text-muted-foreground">
+            <span className="text-meta mb-4 block text-primary">
+              Skills & Expertise
+            </span>
+            <h2 className="text-section">Core Competencies</h2>
+          </motion.div>
+
+          <SkillChart skills={skillsWithLevels} variant="radial" />
+
+          {/* Tools Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mt-20"
+          >
+            <h3 className="mb-8 text-center font-display text-2xl font-semibold">
+              Tools & Software
+            </h3>
+            <div className="mx-auto max-w-2xl">
+              <SkillChart skills={toolsWithLevels} variant="bar" />
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Experience Timeline */}
+      <section className="section-padding border-t border-border">
+        <div className="container-wide">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <span className="text-meta mb-4 block text-primary">
+              Experience
+            </span>
+            <h2 className="text-section">Career Timeline</h2>
+          </motion.div>
+
+          <AnimatedTimeline items={timelineItems} />
+        </div>
+      </section>
+
+      {/* Clients */}
+      <section className="section-padding relative overflow-hidden bg-secondary/30">
+        <div className="absolute inset-0 bg-gradient-to-tl from-primary/5 to-transparent" />
+        <div className="container-wide relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true }}
+            className="mb-12 text-center"
+          >
+            <span className="text-meta mb-4 block text-primary">
               Clients & Collaborations
             </span>
             <h2 className="text-section">
@@ -261,9 +262,9 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.05 }}
                 viewport={{ once: true }}
-                className="flex items-center justify-center py-4"
+                className="group flex items-center justify-center py-4"
               >
-                <span className="font-display text-2xl font-semibold text-muted-foreground/50 transition-colors hover:text-foreground">
+                <span className="font-display text-2xl font-semibold text-muted-foreground/50 transition-all duration-300 group-hover:text-primary group-hover:drop-shadow-[0_0_10px_hsl(var(--primary)/0.5)]">
                   {client}
                 </span>
               </motion.div>
@@ -289,14 +290,14 @@ const About = () => {
             <div className="flex flex-wrap items-center justify-center gap-4">
               <Link
                 to="/contact"
-                className="magnetic-btn group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground transition-all hover:shadow-glow"
+                className="magnetic-btn group inline-flex items-center gap-3 rounded-full bg-primary px-8 py-4 text-base font-medium text-primary-foreground shadow-lg shadow-primary/25 transition-all hover:shadow-xl hover:shadow-primary/30"
                 data-cursor="hover"
               >
                 Get in Touch
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <button
-                className="magnetic-btn group inline-flex items-center gap-3 rounded-full border border-border px-8 py-4 text-base font-medium transition-all hover:border-foreground hover:bg-foreground hover:text-background"
+                className="magnetic-btn group inline-flex items-center gap-3 rounded-full border border-border px-8 py-4 text-base font-medium transition-all hover:border-primary hover:bg-primary hover:text-primary-foreground hover:shadow-lg hover:shadow-primary/25"
                 data-cursor="hover"
               >
                 <Download className="h-4 w-4" />
